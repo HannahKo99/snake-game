@@ -208,6 +208,9 @@ canvas {
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
 }
 
 @media (max-width: 768px) {
