@@ -69,12 +69,12 @@ function init() {
     pauseScreen.classList.remove('active');    // 隱藏暫停畫面
     gameOverScreen.classList.remove('active'); // 隱藏遊戲結束畫面
 
-    const isMobile = window.innerWidth <= 768;
-    const pauseBtn = document.getElementById('pause-btn');
-    // 桌機或手機都綁定同一事件
-    pauseBtn.addEventListener('click', () => {
-        togglePause();
-    });
+    // const isMobile = window.innerWidth <= 768;
+    // const pauseBtn = document.getElementById('pause-btn');
+    // // 桌機或手機都綁定同一事件
+    // pauseBtn.addEventListener('click', () => {
+    //     togglePause();
+    // });
 
     const mobileSlowBtn = document.getElementById('mobile-bullet-time-btn');
     if (window.innerWidth <= 768) {

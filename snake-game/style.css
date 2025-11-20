@@ -37,7 +37,7 @@ body {
 /* 頂部 UI 區域 */
 .top-ui {
     position: absolute;
-    top: 10px;
+    top: -20px;
     /* 貼近頂部 */
     left: 50%;
     /* 水平置中 */
@@ -45,14 +45,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
     pointer-events: auto;
     /* 讓按鈕可以點擊 */
     z-index: 100;
     /* 確保在 canvas 上方 */
+    margin-bottom: 10px;
 }
 
 #pause-btn {
+    color: whitesmoke;
     width: 40px;
     height: 40px;
     font-size: 20px;
@@ -91,6 +93,8 @@ canvas {
     font-size: 20px;
     color: var(--text-color);
     text-shadow: 0 0 10px var(--primary-color);
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .combo-container {
