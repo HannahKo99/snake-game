@@ -57,13 +57,25 @@ function init() {
 
     startBtn.addEventListener('click', startGame);
     restartBtn.addEventListener('click', startGame);
-    pauseBtn.addEventListener('click', togglePause);
     resumeBtn.addEventListener('click', togglePause);
 
     highScoreEl.textContent = highScore;
 
     input = new Input();
     particles = new ParticleSystem();
+
+    // 初始化 overlay 顯示狀態
+    startScreen.classList.add('active');       // 顯示開始畫面
+    pauseScreen.classList.remove('active');    // 隱藏暫停畫面
+    gameOverScreen.classList.remove('active'); // 隱藏遊戲結束畫面
+
+    const isMobile = window.innerWidth <= 768;
+    const pauseBtn = document.getElementById('pause-btn');
+
+    // 桌機或手機都綁定同一事件
+    pauseBtn.addEventListener('click', () => {
+        togglePause();
+    });
 
     // Start render loop
     requestAnimationFrame(gameLoop);
@@ -85,7 +97,6 @@ function startGame() {
     if (isPlaying) return;
 
     isPlaying = true;
-    isPlaying = true;
     isPaused = false;
     pauseScreen.classList.add('hidden'); // Ensure pause screen is hidden
     score = 0;
@@ -96,8 +107,10 @@ function startGame() {
     currentTickRate = baseTickRate;
     updateUI();
 
-    startScreen.classList.add('hidden');
-    gameOverScreen.classList.add('hidden');
+    // 隱藏所有 overlay
+    startScreen.classList.remove('active');
+    gameOverScreen.classList.remove('active');
+    pauseScreen.classList.remove('active');
 
     snake = new Snake(GRID_SIZE);
     food = new Food(GRID_SIZE);
@@ -113,7 +126,8 @@ function gameOver() {
         highScoreEl.textContent = highScore;
     }
     finalScoreEl.textContent = score;
-    gameOverScreen.classList.remove('hidden');
+
+    gameOverScreen.classList.add('active'); // 顯示遊戲結束畫面
 
     // Explosion effect at head
     particles.emit(snake.body[0].x * GRID_SIZE, snake.body[0].y * GRID_SIZE, '#f00', 50);
@@ -124,10 +138,10 @@ function togglePause() {
     isPaused = !isPaused;
 
     if (isPaused) {
-        pauseScreen.classList.remove('hidden');
+        pauseScreen.classList.add('active');   // 顯示暫停畫面
     } else {
-        pauseScreen.classList.add('hidden');
-        lastTime = performance.now(); // Reset time to prevent jump
+        pauseScreen.classList.remove('active'); // 隱藏暫停畫面
+        lastTime = performance.now();           // 防止時間跳動
     }
 }
 
