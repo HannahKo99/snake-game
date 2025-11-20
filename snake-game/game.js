@@ -85,7 +85,9 @@ function startGame() {
     if (isPlaying) return;
 
     isPlaying = true;
+    isPlaying = true;
     isPaused = false;
+    pauseScreen.classList.add('hidden'); // Ensure pause screen is hidden
     score = 0;
     energy = 100;
     comboCount = 0;

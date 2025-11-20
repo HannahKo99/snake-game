@@ -39,7 +39,12 @@ class Input {
     handleTouchMove(e) {
         // Ignore if touching the button
         if (e.target.closest('.mobile-btn')) return;
-        e.preventDefault(); // Prevent scrolling
+
+        // Only prevent default if it's a game swipe action to avoid blocking UI interactions
+        // But for this game, we generally want to prevent scrolling
+        if (e.cancelable) {
+            e.preventDefault();
+        }
 
         if (!this.touchStartX || !this.touchStartY) return;
 
