@@ -58,6 +58,7 @@ function init() {
     startBtn.addEventListener('click', startGame);
     restartBtn.addEventListener('click', startGame);
     resumeBtn.addEventListener('click', togglePause);
+    pauseBtn.addEventListener('click', togglePause);
 
     highScoreEl.textContent = highScore;
 
