@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Tactical Snake</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+
+        <div class="top-ui">
+            <div class="score-board">
+                <div class="score-item">SCORE: <span id="score">0</span></div>
+                <div class="score-item">HIGH: <span id="high-score">0</span></div>
+            </div>
+
+            <div class="energy-bar-container">
+                <div class="energy-label">ENERGY</div>
+                <div class="energy-bar-bg">
+                    <div class="energy-bar-fill" id="energy-fill"></div>
+                </div>
+            </div>
+
+            <button id="pause-btn" class="icon-btn">⏸</button>
+        </div>
+
+        <canvas id="game-canvas"></canvas>
+
+        <div class="combo-container" id="combo-container">
+            <span id="combo-count">x1</span> COMBO!
+        </div>
+
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls" class="mobile-controls">
+            <button id="mobile-bullet-time-btn" class="mobile-btn">⚡ SLOW</button>
+        </div>
+
+        <div id="start-screen" class="overlay active">
+            <h1>NEON SNAKE</h1>
+            <p class="subtitle">TACTICAL OPS</p>
+            <div class="controls-info">
+                <p><span>WASD / ARROWS / SWIPE</span> to Move</p>
+                <p><span>SPACE / HOLD BTN</span> for Bullet Time</p>
+            </div>
+            <button id="start-btn" class="neon-btn">START MISSION</button>
+        </div>
+
+        <div id="pause-screen" class="overlay hidden">
+            <h1>PAUSED</h1>
+            <button id="resume-btn" class="neon-btn">RESUME</button>
+        </div>
+
+        <div id="game-over-screen" class="overlay hidden">
+            <h1>MISSION FAILED</h1>
+            <p>FINAL SCORE: <span id="final-score">0</span></p>
+            <button id="restart-btn" class="neon-btn">RETRY</button>
+        </div>
+    </div>
+
+    <script src="Input.js"></script>
+    <script src="Particle.js"></script>
+    <script src="Snake.js"></script>
+    <script src="Food.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
