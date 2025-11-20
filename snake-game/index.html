@@ -11,14 +11,11 @@
 
 <body>
     <div class="game-container">
-        <div class="ui-layer">
+
+        <div class="top-ui">
             <div class="score-board">
                 <div class="score-item">SCORE: <span id="score">0</span></div>
                 <div class="score-item">HIGH: <span id="high-score">0</span></div>
-            </div>
-
-            <div class="combo-container" id="combo-container">
-                <span id="combo-count">x1</span> COMBO!
             </div>
 
             <div class="energy-bar-container">
@@ -32,6 +29,11 @@
         </div>
 
         <canvas id="game-canvas"></canvas>
+
+        <div class="combo-container" id="combo-container">
+            <span id="combo-count">x1</span> COMBO!
+        </div>
+
 
         <!-- Mobile Controls -->
         <div id="mobile-controls" class="mobile-controls">

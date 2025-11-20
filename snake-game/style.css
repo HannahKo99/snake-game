@@ -34,6 +34,38 @@ body {
     align-items: center;
 }
 
+/* 頂部 UI 區域 */
+.top-ui {
+    position: absolute;
+    top: 10px;
+    /* 貼近頂部 */
+    left: 50%;
+    /* 水平置中 */
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    pointer-events: auto;
+    /* 讓按鈕可以點擊 */
+    z-index: 100;
+    /* 確保在 canvas 上方 */
+}
+
+#pause-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 canvas {
     background:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
@@ -56,7 +88,8 @@ canvas {
 }
 
 .score-board {
-    font-size: 24px;
+    font-size: 20px;
+    color: var(--text-color);
     text-shadow: 0 0 10px var(--primary-color);
 }
 
@@ -78,22 +111,20 @@ canvas {
 }
 
 .energy-bar-container {
-    width: 300px;
-    text-align: right;
+    width: 150px;
 }
 
 .energy-label {
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 12px;
+    margin-bottom: 3px;
     color: var(--energy-color);
 }
 
 .energy-bar-bg {
     width: 100%;
-    height: 10px;
+    height: 8px;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -101,7 +132,6 @@ canvas {
     width: 100%;
     height: 100%;
     background: var(--energy-color);
-    box-shadow: 0 0 10px var(--energy-color);
     transition: width 0.1s linear;
 }
 
@@ -154,10 +184,6 @@ canvas {
         width: 150px;
     }
 
-    .mobile-controls {
-        display: block;
-    }
-
     /* Prevent pull-to-refresh and scrolling */
     body {
         overscroll-behavior: none;
@@ -170,38 +196,19 @@ canvas {
     }
 }
 
-/* 桌機版 pause 按鈕 */
-#pause-btn {
+.mobile-controls {
+    display: none;
+    /* 桌機版隱藏 */
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 255, 255, 0.1);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-size: 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: auto;
-    /* 允許點擊 */
-    transition: transform 0.1s;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
 }
 
-#pause-btn:hover {
-    transform: scale(1.1);
-}
-
-/* 手機版 pause 按鈕 - 可以放在左上角或浮動位置 */
 @media (max-width: 768px) {
-    #pause-btn {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+    .mobile-controls {
+        display: block;
+        /* 手機版顯示 */
     }
 }

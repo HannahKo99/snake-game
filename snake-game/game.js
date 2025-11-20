@@ -71,11 +71,20 @@ function init() {
 
     const isMobile = window.innerWidth <= 768;
     const pauseBtn = document.getElementById('pause-btn');
-
     // 桌機或手機都綁定同一事件
     pauseBtn.addEventListener('click', () => {
         togglePause();
     });
+
+    const mobileSlowBtn = document.getElementById('mobile-bullet-time-btn');
+    if (window.innerWidth <= 768) {
+        mobileSlowBtn.addEventListener('mousedown', () => { timeScale = 0.3; });
+        mobileSlowBtn.addEventListener('mouseup', () => { timeScale = 1.0; });
+        mobileSlowBtn.addEventListener('touchstart', () => { timeScale = 0.3; });
+        mobileSlowBtn.addEventListener('touchend', () => { timeScale = 1.0; });
+    }
+
+
 
     // Start render loop
     requestAnimationFrame(gameLoop);
