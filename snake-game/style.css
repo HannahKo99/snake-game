@@ -1,0 +1,239 @@
+:root {
+    --bg-color: #0a0a12;
+    --grid-color: rgba(0, 255, 255, 0.05);
+    --primary-color: #0ff;
+    --secondary-color: #f0f;
+    --text-color: #fff;
+    --energy-color: #ff0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Orbitron', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    background:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.1);
+    border: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+/* UI Layer */
+.ui-layer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    pointer-events: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.score-board {
+    font-size: 24px;
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+.combo-container {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    font-size: 32px;
+    color: var(--energy-color);
+    text-shadow: 0 0 15px var(--energy-color);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s;
+}
+
+.combo-container.active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.energy-bar-container {
+    width: 300px;
+    text-align: right;
+}
+
+.energy-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--energy-color);
+}
+
+.energy-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.energy-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: var(--energy-color);
+    box-shadow: 0 0 10px var(--energy-color);
+    transition: width 0.1s linear;
+}
+
+/* Overlays */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 18, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.hidden {
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.controls-info {
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.controls-info span {
+    color: var(--primary-color);
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.neon-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 15px 40px;
+    font-size: 24px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.neon-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 30px var(--primary-color);
+}
+
+/* Pause Button */
+.icon-btn {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    pointer-events: auto;
+}
+
+/* Mobile Controls */
+.mobile-controls {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    /* Hidden on desktop */
+    pointer-events: auto;
+    z-index: 50;
+}
+
+.mobile-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    touch-action: none;
+}
+
+.mobile-btn:active {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    transform: scale(0.95);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .score-board {
+        font-size: 18px;
+    }
+
+    .energy-bar-container {
+        width: 150px;
+    }
+
+    .mobile-controls {
+        display: block;
+    }
+
+    /* Prevent pull-to-refresh and scrolling */
+    body {
+        overscroll-behavior: none;
+        touch-action: none;
+    }
+
+    /* Safe Area for notched phones */
+    .game-container {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+}
