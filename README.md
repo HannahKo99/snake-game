@@ -1,6 +1,4 @@
 ﻿# snake-game
-好的，我幫你把內容整理成適合放在 `README.md` 的格式，清晰易讀，保留你的 TDD 流程與測試案例：
-
 ---
 
 # 戰術型貪吃蛇 (Tactical Snake) - TDD 測試計畫
@@ -78,3 +76,4 @@ function testSnakeMove() {
 6. **重複循環**：接著寫 `testSnakeEat()`，依序完成其他測試。
 
 ---
+
